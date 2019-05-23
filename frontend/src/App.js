@@ -5,9 +5,8 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Legend,
-  Line,
-  LineChart
+  AreaChart,
+  Area
 } from "recharts";
 import FirebaseGraph from "./FirebaseGraph";
 
@@ -32,36 +31,24 @@ class App extends Component {
 
   render() {
     const { message } = this.state;
-    console.log(message);
-
     return (
       <div>
-        <h2>Realtime Graph</h2>
-        <LineChart
-          width={900}
-          height={500}
-          data={message}
-          margin={{
-            top: 50,
-            right: 30,
-            left: 20,
-            bottom: 5
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="time" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line
-            type="monotone"
-            dataKey="count"
-            stroke="#8884d8"
-            activeDot={{ r: 8 }}
-          />
-        </LineChart>
-        <h2>Firebase Graph</h2>
-        <FirebaseGraph />
+      <AreaChart
+        width={900}
+        height={500}
+        data={message}
+        margin={{
+          top: 10, right: 30, left: 0, bottom: 0,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="time" />
+        <YAxis />
+        <Tooltip />
+        <Area type="monotone" dataKey="count" stroke="#8884d8" fill="#8884d8" />
+      </AreaChart>
+      <h2>Firebase Graph</h2>
+      <FirebaseGraph />
       </div>
     );
   }

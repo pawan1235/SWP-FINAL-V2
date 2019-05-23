@@ -4,9 +4,8 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Legend,
-  Line,
-  LineChart
+  AreaChart,
+  Area
 } from "recharts";
 import firebase from "./config/fbConfig";
 
@@ -31,29 +30,20 @@ class FirebaseGraph extends React.Component {
     const {data} = this.state
     
     return (
-      <LineChart
-        width={900}
-        height={500}
-        data={data}
-        margin={{
-          top: 50,
-          right: 30,
-          left: 20,
-          bottom: 5
-        }}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="time" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Line
-          type="monotone"
-          dataKey="count"
-          stroke="#8884d8"
-          activeDot={{ r: 8 }}
-        />
-      </LineChart>
+      <AreaChart
+      width={900}
+      height={500}
+      data={data}
+      margin={{
+        top: 10, right: 30, left: 0, bottom: 0,
+      }}
+    >
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="time" />
+      <YAxis />
+      <Tooltip />
+      <Area type="monotone" dataKey="count" stroke="#8884d8" fill="#8884d8" />
+    </AreaChart>
     );
   }
 }
